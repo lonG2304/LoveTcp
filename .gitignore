@@ -1,0 +1,10 @@
+build/
+.gradle/
+.idea/
+*.iml
+local.properties
+.DS_Store
+*.hprof
+captures/
+*.apk
+rangaofei_log.md
