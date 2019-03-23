@@ -12,7 +12,7 @@ import com.parking.park.tcp.ParkingInfoListener;
 
 import io.netty.channel.ChannelHandlerContext;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private View enter;
     private View exit;
