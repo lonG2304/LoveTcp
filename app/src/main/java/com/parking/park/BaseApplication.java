@@ -1,6 +1,7 @@
 package com.parking.park;
 
 import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.parking.park.bean.EntranceBean;
 import com.parking.park.bean.ExitBean;
@@ -14,7 +15,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import io.netty.channel.ChannelHandlerContext;
 
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
 
     public static BaseApplication context = null;
 

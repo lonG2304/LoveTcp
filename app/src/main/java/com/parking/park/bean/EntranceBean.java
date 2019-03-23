@@ -5,6 +5,10 @@ package com.parking.park.bean;
  */
 public class EntranceBean extends BaseBean{
 
+    /***
+     * {"yw":1000,"cp":"苏B12345","clxz":"包月车","fjxx1"："欢迎光临"}
+
+     */
     private int yw;
     private String cp;
     private String clxz;
