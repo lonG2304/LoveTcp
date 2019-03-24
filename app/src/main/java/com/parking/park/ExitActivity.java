@@ -44,7 +44,7 @@ public class ExitActivity extends BaseActivity {
 
         mTvCarType.setText(messageEvent.getClxz());
         mTvTime.setText(SpanStringUtils.getTime(messageEvent.getSc()));
-        mTvCost.setText(SpanStringUtils.getTime(messageEvent.getJe()));
+        mTvCost.setText(SpanStringUtils.getMoney(messageEvent.getJe()));
         carCode.setText(SpanStringUtils.getCarCode(messageEvent.getCp()));
         mTvTips.setText(messageEvent.getFjxx1());
         ImageLoader.load(this, messageEvent.getFkewm(), mIvCode);

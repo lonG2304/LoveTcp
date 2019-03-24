@@ -3,6 +3,8 @@ package com.parking.park.utils;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 /**
  * Created by Administrator on 2019/3/23 0023.
  */
