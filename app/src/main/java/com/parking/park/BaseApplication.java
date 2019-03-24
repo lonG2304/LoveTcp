@@ -1,12 +1,10 @@
 package com.parking.park;
 
-import android.app.Application;
 import android.support.multidex.MultiDexApplication;
 
 import com.parking.park.bean.EntranceBean;
 import com.parking.park.bean.ExitBean;
-import com.parking.park.tcp.EmCommand;
-import com.parking.park.tcp.MessageReceiver;
+import com.parking.park.tcp.EmSend;
 import com.parking.park.tcp.ParkingHelper;
 import com.parking.park.tcp.ParkingInfoListener;
 import com.parking.park.utils.BeanConvertor;
@@ -39,23 +37,23 @@ public class BaseApplication extends MultiDexApplication {
             }
 
             @Override
-            public void onReceiveInfo(ChannelHandlerContext ctx, MessageReceiver info) {
-                EmCommand command = info.getCommand();
-                String servSeq = command.getServSeq();
-                switch (command) {
+            public void onReceiveInfo(ChannelHandlerContext ctx, EmSend emSend, String rcvData) {
+
+                switch (emSend) {
                     case HEART_BEAT:
                         ParkingHelper.getInstance().sendHeart();
                         break;
                     case ENTRANCE:
-                        EventBus.getDefault().post(BeanConvertor.getBean(servSeq, EntranceBean.class));
-                        ParkingHelper.getInstance().sendMsg(true, EmCommand.ENTRANCE);
+                        EventBus.getDefault().post(BeanConvertor.getBean(rcvData, EntranceBean.class));
+                        ParkingHelper.getInstance().sendMsg(true, EmSend.ENTRANCE);
                         break;
                     case EXIT:
-                        EventBus.getDefault().post(BeanConvertor.getBean(servSeq, ExitBean.class));
-                        ParkingHelper.getInstance().sendMsg(true, EmCommand.EXIT);
+                        EventBus.getDefault().post(BeanConvertor.getBean(rcvData, ExitBean.class));
+                        ParkingHelper.getInstance().sendMsg(true, EmSend.EXIT);
                         break;
                 }
             }
+
 
             @Override
             public void onChannelInactive(ChannelHandlerContext ctx) {
@@ -64,5 +62,6 @@ public class BaseApplication extends MultiDexApplication {
 
 
     }
+
 
 }

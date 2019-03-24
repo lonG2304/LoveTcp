@@ -2,15 +2,7 @@ package com.parking.park;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
-import com.parking.park.tcp.EmCommand;
-import com.parking.park.tcp.MessageReceiver;
-import com.parking.park.tcp.ParkingHelper;
-import com.parking.park.tcp.ParkingInfoListener;
-
-import io.netty.channel.ChannelHandlerContext;
 
 public class MainActivity extends BaseActivity {
 

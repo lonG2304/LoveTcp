@@ -1,11 +1,16 @@
 package com.parking.park.tcp;
 
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.parking.park.BaseApplication;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-class ParkingHandler extends SimpleChannelInboundHandler<MessageReceiver> {
+class ParkingHandler extends SimpleChannelInboundHandler<String> {
     private static final String TAG = "MusicWiseHandler";
     private ParkingInfoListener listener;
 
@@ -25,9 +30,25 @@ class ParkingHandler extends SimpleChannelInboundHandler<MessageReceiver> {
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, MessageReceiver msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, String rcvMsg) throws Exception {
         if (listener != null) {
-            listener.onReceiveInfo(ctx, msg);
+            if (!TextUtils.isEmpty(rcvMsg)) {
+                if (rcvMsg.contains("\n"))
+                    rcvMsg = rcvMsg.replace("\n", "");
+                Log.v("gl", "rcvMsg==" + rcvMsg);
+                Gson gson = new Gson();
+                RspModel model = gson.fromJson(rcvMsg, RspModel.class);
+                if (model != null) {
+                    String name = EmReceive.getReCmd(model.getCmdType());
+                    if (!TextUtils.isEmpty(name)) {
+                        EmSend emCommand = EmSend.getCmd(name);
+                        listener.onReceiveInfo(ctx, emCommand, model.getData());
+                    } else
+                        Toast.makeText(BaseApplication.context, "非法指令", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(BaseApplication.context, "指令格式错误", Toast.LENGTH_LONG).show();
+                }
+            }
         }
     }
 

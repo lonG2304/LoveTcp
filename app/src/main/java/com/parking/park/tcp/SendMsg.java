@@ -68,23 +68,23 @@ public class SendMsg {
     }
 
 
-    public static SendMsg creat(EmCommand emCommand) {
+    public static SendMsg creat(EmSend emCommand) {
         SendMsg sendMsg = new SendMsg(emCommand);
         return sendMsg;
     }
 
-    public SendMsg(EmCommand emCommand) {
+    public SendMsg(EmSend emCommand) {
         this.cmdType = emCommand.getCmdType();
         this.servSeq = emCommand.getServSeq();
     }
 
-    public static SendMsg creat(EmCommand emCommand, int code, String msg) {
+    public static SendMsg creat(EmSend emCommand, int code, String msg) {
         SendMsg sendMsg = new SendMsg(emCommand, code, msg);
         return sendMsg;
     }
 
 
-    public SendMsg(EmCommand emCommand, int code, String msg) {
+    public SendMsg(EmSend emCommand, int code, String msg) {
         this.cmdType = emCommand.getCmdType();
         this.servSeq = emCommand.getServSeq();
         this.data = creatDataBean(code, msg);
@@ -94,6 +94,19 @@ public class SendMsg {
     public static DataBean creatDataBean(int code, String msg) {
         DataBean dataBean = new DataBean(code, msg);
         return dataBean;
+    }
+
+
+    public SendMsg(RspModel rspModel, int code, String msg) {
+        this.cmdType = rspModel.getCmdType();
+        this.servSeq = rspModel.getServSeq();
+        this.data = creatDataBean(code, msg);
+    }
+
+
+    public static SendMsg creat(RspModel rspModel, int code, String msg) {
+        SendMsg sendMsg = new SendMsg(rspModel, code, msg);
+        return sendMsg;
     }
 
 
