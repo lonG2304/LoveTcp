@@ -2,10 +2,12 @@ package com.parking.park.tcp;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-class ParkingHandler extends SimpleChannelInboundHandler<MessageReceiver> {
+class ParkingHandler extends SimpleChannelInboundHandler<String> {
     private static final String TAG = "MusicWiseHandler";
     private ParkingInfoListener listener;
 
@@ -25,9 +27,15 @@ class ParkingHandler extends SimpleChannelInboundHandler<MessageReceiver> {
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, MessageReceiver msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, String rcvMsg) throws Exception {
         if (listener != null) {
-            listener.onReceiveInfo(ctx, msg);
+
+            Gson gson = new Gson();
+            RspModel model = gson.fromJson(rcvMsg, RspModel.class);
+            String name = EmReceive.getReCmd(model.getCmdType());
+            EmSend emCommand = EmSend.getCmd(name);
+
+            listener.onReceiveInfo(ctx, emCommand, model.getData());
         }
     }
 

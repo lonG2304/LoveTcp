@@ -68,17 +68,29 @@ public class ParkingHelper {
 
 
     public void sendHeart() {
-        SendMsg sendMsg = SendMsg.creat(EmCommand.HEART_BEAT);
+        SendMsg sendMsg = SendMsg.creat(EmSend.HEART_BEAT);
         sendMessage(sendMsg);
     }
 
 
-    public void sendMsg(boolean result, EmCommand emCommand) {
+    public void sendMsg(boolean result, EmSend emCommand) {
         SendMsg sendMsg;
         if (result) {
             sendMsg = SendMsg.creat(emCommand, 0, "yes");
         } else
             sendMsg = SendMsg.creat(emCommand, 1, "no");
+        sendMessage(sendMsg);
+    }
+
+
+
+
+    public void sendMsg(boolean result, RspModel rspModel) {
+        SendMsg sendMsg;
+        if (result) {
+            sendMsg = SendMsg.creat(rspModel, 0, "yes");
+        } else
+            sendMsg = SendMsg.creat(rspModel, 1, "no");
         sendMessage(sendMsg);
     }
 
