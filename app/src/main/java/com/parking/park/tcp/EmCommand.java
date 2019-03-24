@@ -6,6 +6,9 @@ public enum EmCommand {
     EXIT("1004", "111111");
 
 
+
+
+
     private String cmdType;
     private String servSeq;
 
