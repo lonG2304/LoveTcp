@@ -11,6 +11,7 @@ import com.parking.park.utils.BeanConvertor;
 
 import org.greenrobot.eventbus.EventBus;
 
+import butterknife.internal.Utils;
 import io.netty.channel.ChannelHandlerContext;
 
 public class BaseApplication extends MultiDexApplication {
