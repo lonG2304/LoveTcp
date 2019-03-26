@@ -1,6 +1,7 @@
 package com.parking.park;
 
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,8 +14,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.net.URL;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -22,11 +21,9 @@ import static com.parking.park.Constant.AD_SHOW_DELAY;
 
 public class ExitActivity extends BaseActivity {
 
-    @BindView(R.id.car_code)
-    TextView carCode;
     @BindView(R.id.tv_car_type)
     TextView mTvCarType;
-    @BindView(R.id.tv_time)
+    @BindView(R.id.tv_cost_time)
     TextView mTvTime;
     @BindView(R.id.tv_cost)
     TextView mTvCost;
@@ -44,16 +41,22 @@ public class ExitActivity extends BaseActivity {
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         fl_container.addView(mLayout);
-
+        mIvCode.post(new Runnable() {
+            @Override
+            public void run() {
+                ViewGroup.LayoutParams layoutParams = mIvCode.getLayoutParams();
+                layoutParams.height = mIvCode.getWidth();
+                mIvCode.setLayoutParams(layoutParams);
+            }
+        });
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(ExitBean messageEvent) {
 
-        mTvCarType.setText(messageEvent.getClxz());
+        mTvCarType.setText(SpanStringUtils.getCarCode(messageEvent.getCp(),messageEvent.getClxz()));
         mTvTime.setText(SpanStringUtils.getTime(messageEvent.getSc()));
         mTvCost.setText(SpanStringUtils.getMoney(messageEvent.getJe()));
-        carCode.setText(SpanStringUtils.getCarCode(messageEvent.getCp()));
         mTvTips.setText(messageEvent.getFjxx1());
         try {
             ImageLoader.load(messageEvent.getFkewm(), mIvCode);

@@ -30,16 +30,23 @@ public class SpanStringUtils {
 
     public static CharSequence getTime(String sc) {
         AndroidSpan span = new AndroidSpan();
-        span.drawWithOptions("时长", new SpanOptions())
-                .drawWithOptions("   " + sc, new SpanOptions().addForegroundColor(Color.RED));
+        span.drawWithOptions("停留：", new SpanOptions())
+                .drawWithOptions(sc, new SpanOptions());
         return span.getSpanText();
     }
 
     public static CharSequence getMoney(String sc) {
         AndroidSpan span = new AndroidSpan();
-        span.drawWithOptions("金额", new SpanOptions())
-                .drawWithOptions("   " + sc, new SpanOptions().addForegroundColor(Color.RED));
+        span.drawWithOptions("收费金额：", new SpanOptions())
+                .drawWithOptions(sc, new SpanOptions().addForegroundColor(Color.RED));
         return span.getSpanText();
     }
 
+    public static CharSequence getCarCode(String cp, String clxz) {
+        AndroidSpan span = new AndroidSpan();
+        span.drawWithOptions(clxz + ":", new SpanOptions())
+                .drawWithOptions(cp, new SpanOptions().addRelativeSize(1.1f).addForegroundColor(Color.RED)
+                        .addStyleSpan(android.graphics.Typeface.BOLD));
+        return span.getSpanText();
+    }
 }

@@ -4,71 +4,83 @@
              android:id="@+id/fl_container"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="@mipmap/background">
+             android:background="#fff">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/view_margin"
-        android:layout_marginTop="@dimen/view_margin"
-        android:layout_marginRight="@dimen/view_margin"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/car_code"
+        <ImageView
+            android:id="@+id/iv_code"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/bg_view_height"
-            android:background="@mipmap/bg2"
+            android:layout_height="@dimen/code_size"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/view_margin_small"
+            android:layout_marginTop="@dimen/view_margin_small"
+            android:layout_marginRight="@dimen/view_margin_small"
+            android:background="@drawable/code_bg"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/view_margin"
-            android:text="车牌"
-            android:textColor="#fff"
-            android:textSize="@dimen/main_text_size"/>
+            android:padding="5dp"
+            android:text="扫码支付"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/main_text_size"
+            android:textStyle="bold"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fff"
+            android:background="@android:color/holo_blue_light"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_car_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff"
                 android:gravity="center"
-                android:padding="@dimen/view_margin"
-                android:text="临时车辆"
-                android:textColor="#000"
-                android:textSize="@dimen/main_text_size"/>
-
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="时常"
-                android:textColor="#000"
+                android:padding="@dimen/view_margin_tiny"
+                android:text="临时车辆："
+                android:textColor="@android:color/holo_green_dark"
                 android:textSize="@dimen/text_size_small"/>
+
 
             <TextView
                 android:id="@+id/tv_cost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="@dimen/view_margin_small"
-                android:text="金额"
-                android:textColor="#000"
+                android:padding="@dimen/view_margin_tiny"
+                android:text="收费金额："
+                android:textColor="@android:color/holo_green_dark"
                 android:textSize="@dimen/text_size_small"/>
 
+            <TextView
+                android:id="@+id/tv_in_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/view_margin_tiny"
+                android:text="入场："
+                android:textColor="@android:color/holo_green_dark"
+                android:textSize="@dimen/text_size_tiny"/>
 
-            <ImageView
-                android:id="@+id/iv_code"
-                android:layout_width="@dimen/code_size"
-                android:layout_height="@dimen/code_size"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/view_margin"
-                android:background="#f00"/>
+
+            <TextView
+                android:id="@+id/tv_cost_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/view_margin_tiny"
+                android:text="停留："
+                android:textColor="@android:color/holo_green_dark"
+                android:textSize="@dimen/text_size_tiny"/>
+
+
         </LinearLayout>
 
 
@@ -86,6 +98,7 @@
         android:text="一路顺风"
         android:textColor="#fff"
         android:textSize="@dimen/welcome_text_size"
+        android:visibility="gone"
         />
 
 
