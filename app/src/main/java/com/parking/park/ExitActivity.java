@@ -1,6 +1,7 @@
 package com.parking.park;
 
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,8 +13,12 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.net.URL;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.parking.park.Constant.AD_SHOW_DELAY;
 
 public class ExitActivity extends BaseActivity {
 
@@ -29,6 +34,8 @@ public class ExitActivity extends BaseActivity {
     ImageView mIvCode;
     @BindView(R.id.tv_tips)
     TextView mTvTips;
+    @BindView(R.id.fl_container)
+    FrameLayout fl_container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,7 @@ public class ExitActivity extends BaseActivity {
         setContentView(R.layout.activity_exit);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
+        fl_container.addView(mLayout);
 
     }
 
@@ -47,7 +55,21 @@ public class ExitActivity extends BaseActivity {
         mTvCost.setText(SpanStringUtils.getMoney(messageEvent.getJe()));
         carCode.setText(SpanStringUtils.getCarCode(messageEvent.getCp()));
         mTvTips.setText(messageEvent.getFjxx1());
-        ImageLoader.load(this, messageEvent.getFkewm(), mIvCode);
+        try {
+            ImageLoader.load(messageEvent.getFkewm(), mIvCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (fl_container.indexOfChild(mLayout) >= 0) {
+            fl_container.removeView(mLayout);
+            fl_container.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    fl_container.addView(mLayout);
+                }
+            }, AD_SHOW_DELAY);
+        }
 
     }
 

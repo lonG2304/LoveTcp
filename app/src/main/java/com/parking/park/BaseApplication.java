@@ -2,6 +2,7 @@ package com.parking.park;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.blankj.utilcode.util.Utils;
 import com.parking.park.bean.EntranceBean;
 import com.parking.park.bean.ExitBean;
 import com.parking.park.tcp.EmSend;
@@ -11,7 +12,6 @@ import com.parking.park.utils.BeanConvertor;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.internal.Utils;
 import io.netty.channel.ChannelHandlerContext;
 
 public class BaseApplication extends MultiDexApplication {
@@ -22,6 +22,7 @@ public class BaseApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         context = this;
+        Utils.init(this);
 
         new Thread(new Runnable() {
             @Override

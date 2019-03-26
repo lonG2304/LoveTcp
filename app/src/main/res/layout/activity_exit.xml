@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
+             android:id="@+id/fl_container"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="@mipmap/background">
@@ -9,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/view_margin"
-        android:layout_marginRight="@dimen/view_margin"
         android:layout_marginTop="@dimen/view_margin"
+        android:layout_marginRight="@dimen/view_margin"
         android:orientation="vertical">
 
         <TextView
@@ -78,9 +79,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="@dimen/tips_bottom"
         android:layout_marginLeft="@dimen/view_margin"
         android:layout_marginRight="@dimen/view_margin"
+        android:layout_marginBottom="@dimen/tips_bottom"
         android:gravity="center"
         android:text="一路顺风"
         android:textColor="#fff"
