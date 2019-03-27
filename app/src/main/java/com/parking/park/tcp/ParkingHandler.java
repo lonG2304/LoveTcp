@@ -6,12 +6,13 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.parking.park.BaseApplication;
+import com.parking.park.bean.EntranceBean;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 class ParkingHandler extends SimpleChannelInboundHandler<String> {
-    private static final String TAG = "MusicWiseHandler";
+    private static final String TAG = "ParkingHandler";
     private ParkingInfoListener listener;
 
     ParkingHandler(ParkingInfoListener listener) {
@@ -26,23 +27,25 @@ class ParkingHandler extends SimpleChannelInboundHandler<String> {
         if (listener != null) {
             listener.onChannelActive(ctx);
         }
-
     }
+
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String rcvMsg) throws Exception {
+        Log.e(TAG, "channelRead0" + ctx.channel().remoteAddress() + ", " + rcvMsg);
+
         if (listener != null) {
             if (!TextUtils.isEmpty(rcvMsg)) {
-                if (rcvMsg.contains("\n"))
-                    rcvMsg = rcvMsg.replace("\n", "");
                 Log.v("gl", "rcvMsg==" + rcvMsg);
                 Gson gson = new Gson();
                 RspModel model = gson.fromJson(rcvMsg, RspModel.class);
+
+
                 if (model != null) {
                     String name = EmReceive.getReCmd(model.getCmdType());
                     if (!TextUtils.isEmpty(name)) {
                         EmSend emCommand = EmSend.getCmd(name);
-                        listener.onReceiveInfo(ctx, emCommand, model.getData());
+                        listener.onReceiveInfo(ctx, emCommand, gson.toJson(model.getData()));
                     } else
                         Toast.makeText(BaseApplication.context, "非法指令", Toast.LENGTH_LONG).show();
                 } else {
@@ -51,6 +54,7 @@ class ParkingHandler extends SimpleChannelInboundHandler<String> {
             }
         }
     }
+
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
@@ -61,4 +65,5 @@ class ParkingHandler extends SimpleChannelInboundHandler<String> {
             listener.onChannelInactive(ctx);
         }
     }
+
 }

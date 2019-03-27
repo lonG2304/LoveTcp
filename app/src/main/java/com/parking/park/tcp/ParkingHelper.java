@@ -63,7 +63,7 @@ public class ParkingHelper {
         }
 
         String msg = new Gson().toJson(sender);
-        channelCtx.writeAndFlush(msg);
+        channelCtx.writeAndFlush(msg+"\n");
     }
 
 
