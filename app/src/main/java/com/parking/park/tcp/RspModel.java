@@ -1,10 +1,10 @@
 package com.parking.park.tcp;
 
-public class RspModel {
+public class RspModel<T> {
 
     private String cmdType;
     private String servSeq;
-    private String data;
+    private T data;
 
     public String getCmdType() {
         return cmdType;
@@ -22,11 +22,11 @@ public class RspModel {
         this.servSeq = servSeq;
     }
 
-    public String getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(T data) {
         this.data = data;
     }
 }
