@@ -22,7 +22,6 @@ class ParkingHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);
-        Log.e(TAG, "channelActive");
         ParkingHelper.channelCtx = ctx;
         if (listener != null) {
             listener.onChannelActive(ctx);
@@ -32,7 +31,6 @@ class ParkingHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String rcvMsg) throws Exception {
-        Log.e(TAG, "channelRead0" + ctx.channel().remoteAddress() + ", " + rcvMsg);
 
         if (listener != null) {
             if (!TextUtils.isEmpty(rcvMsg)) {
@@ -59,7 +57,6 @@ class ParkingHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         super.channelInactive(ctx);
-        Log.e(TAG, "channelInactive");
         ParkingHelper.channelCtx = null;
         if (listener != null) {
             listener.onChannelInactive(ctx);
