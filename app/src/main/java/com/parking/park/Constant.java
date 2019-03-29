@@ -9,7 +9,7 @@ public class Constant {
     public static int PORT = 9999;
 
     public static final long AD_LOOP_INTERVAL = 3000l;
-    public static final long AD_SHOW_DELAY= 3000l;
+    public static final long AD_SHOW_DELAY= 9000l;
 
 
 }
