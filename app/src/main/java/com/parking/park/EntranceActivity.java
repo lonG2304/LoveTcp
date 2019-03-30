@@ -1,28 +1,20 @@
 package com.parking.park;
 
 import android.os.Bundle;
-import android.os.Environment;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.FileUtils;
 import com.parking.park.bean.EntranceBean;
-import com.parking.park.bean.ExitBean;
 import com.parking.park.utils.SpanStringUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.parking.park.Constant.AD_SHOW_DELAY;
+import static com.parking.park.Constant.msg_show_delay;
 
 public class EntranceActivity extends BaseActivity {
 
@@ -61,7 +53,7 @@ public class EntranceActivity extends BaseActivity {
                 public void run() {
                     fl_container.addView(mLayout);
                 }
-            }, AD_SHOW_DELAY);
+            }, msg_show_delay);
         }
     }
 
