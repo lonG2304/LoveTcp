@@ -3,7 +3,9 @@ package com.parking.park.tcp;
 public enum EmReceive {
     HEART_BEAT("900"),
     ENTRANCE("1001"),
-    EXIT("1003");
+    EXIT("1003"),
+    OVER("1005");
+
 
 
     private String cmdType;

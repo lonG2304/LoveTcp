@@ -57,6 +57,10 @@ public class BaseApplication extends MultiDexApplication {
                         EventBus.getDefault().post(BeanConvertor.getBean(rcvData, ExitBean.class));
                         ParkingHelper.getInstance().sendMsg(true, EmSend.EXIT);
                         break;
+                    case OVER:
+                        ParkingHelper.getInstance().sendMsg(true, EmSend.OVER);
+                        break;
+
                 }
             }
 

@@ -3,7 +3,8 @@ package com.parking.park.tcp;
 public enum EmSend {
     HEART_BEAT("901", "111111"),
     ENTRANCE("1002", "111111"),
-    EXIT("1004", "111111");
+    EXIT("1004", "111111"),
+    OVER("1006","111111");
 
     private String cmdType;
     private String servSeq;
