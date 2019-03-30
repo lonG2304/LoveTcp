@@ -58,7 +58,6 @@ public class ExitActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(ExitBean messageEvent) {
-        over = false;
         mTvCarType.setText(SpanStringUtils.getCarCode(messageEvent.getCp(), messageEvent.getClxz()));
         mTvTime.setText(SpanStringUtils.getTime(messageEvent.getSc()));
         mTvCost.setText(SpanStringUtils.getMoney(messageEvent.getJe()));
@@ -74,22 +73,20 @@ public class ExitActivity extends BaseActivity {
         if (fl_container.indexOfChild(mLayout) >= 0) {
             fl_container.removeView(mLayout);
         }
-
     }
 
-    protected boolean over = true;
-
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void Event(OverBean messageEvent) {
-        over = true;
+    public void Event(final OverBean messageEvent) {
+        fl_container.setTag(messageEvent);
         fl_container.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (fl_container.indexOfChild(mLayout) < 0 && over)
+                Object tag = fl_container.getTag();
+                if (fl_container.indexOfChild(mLayout) < 0 &&
+                        messageEvent == tag)
                     fl_container.addView(mLayout);
             }
         }, msg_over_delay);
     }
-
 
 }

@@ -40,10 +40,8 @@ public class EntranceActivity extends BaseActivity {
     }
 
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(EntranceBean messageEvent) {
-        over = false;
         mTvCarType.setText(messageEvent.getClxz());
         mTvRemainder.setText(SpanStringUtils.getCarRemainder(messageEvent.getYw()));
         carCode.setText(SpanStringUtils.getCarCode(messageEvent.getCp()));
@@ -52,14 +50,17 @@ public class EntranceActivity extends BaseActivity {
             fl_container.removeView(mLayout);
         }
     }
-    protected boolean over = true;
+
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void Event(OverBean messageEvent) {
-        over = true;
+    public void Event(final OverBean messageEvent) {
+        fl_container.setTag(messageEvent);
         fl_container.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (fl_container.indexOfChild(mLayout) < 0 && over)
+                Object tag = fl_container.getTag();
+                if (fl_container.indexOfChild(mLayout) < 0 &&
+                        messageEvent == tag)
                     fl_container.addView(mLayout);
             }
         }, msg_over_delay);
