@@ -11,8 +11,10 @@ public class BeanConvertor {
 
     public static <T extends BaseBean> T getBean(String data, Class<T> clz) {
         try {
-            return  mGson.fromJson(data, clz);
+            return mGson.fromJson(data, clz);
         } catch (Exception e) {
+            MyToast.showTestToast("数据转换为bean出现异常:" + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }

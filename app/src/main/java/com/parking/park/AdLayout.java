@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.parking.park.utils.ImageLoader;
+import com.parking.park.utils.MyToast;
 
 import java.io.File;
 import java.util.List;
@@ -44,12 +45,15 @@ public class AdLayout extends FrameLayout {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         looping = false;
+        MyToast.showTestToast("广告轮播暂停" );
+
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         looping = true;
+        MyToast.showTestToast("广告轮播开始" );
     }
 
     public void setImageList(final List<String> paths) {

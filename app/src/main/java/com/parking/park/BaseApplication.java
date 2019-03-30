@@ -9,6 +9,7 @@ import com.parking.park.tcp.EmSend;
 import com.parking.park.tcp.ParkingHelper;
 import com.parking.park.tcp.ParkingInfoListener;
 import com.parking.park.utils.BeanConvertor;
+import com.parking.park.utils.MyToast;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -65,5 +66,10 @@ public class BaseApplication extends MultiDexApplication {
 
     }
 
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        MyToast.showTestToast("内存太低");
 
+    }
 }

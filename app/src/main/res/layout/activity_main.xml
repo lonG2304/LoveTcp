@@ -6,6 +6,16 @@
              tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="enter!"/>
+
+    <TextView
         android:id="@+id/tv_enter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,6 +30,30 @@
         android:layout_gravity="center_vertical|right"
         android:padding="30dp"
         android:text="exit!"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/bt_change_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="切换测试"/>
+
+        <Button
+            android:id="@+id/bt_set_msg_delay_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="信息显示时间"/>
+
+
+    </LinearLayout>
 
 
 </FrameLayout>

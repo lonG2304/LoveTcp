@@ -13,7 +13,7 @@ public class SpanStringUtils {
 
     public static CharSequence getCarCode(String cp) {
         AndroidSpan span = new AndroidSpan();
-        span.drawWithOptions("车牌", new SpanOptions())
+        span.drawWithOptions("车牌: ", new SpanOptions())
                 .drawWithOptions(cp, new SpanOptions().addRelativeSize(1.1f).addStyleSpan(android.graphics.Typeface.BOLD));
         return span.getSpanText();
     }
@@ -21,7 +21,7 @@ public class SpanStringUtils {
     public static CharSequence getCarRemainder(int yw) {
         String[] chars = (yw + "").split("");
         AndroidSpan span = new AndroidSpan();
-        span.drawWithOptions("余位", new SpanOptions());
+        span.drawWithOptions("余位: ", new SpanOptions());
         for (int i = 0; i < chars.length; i++) {
             span.drawWithOptions(chars[i] + " ", new SpanOptions().addRelativeSize(1.2f).addStyleSpan(android.graphics.Typeface.BOLD));
         }
