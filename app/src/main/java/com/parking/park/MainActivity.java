@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.ToastUtils;
 
-import static com.parking.park.Constant.msg_show_delay;
+import static com.parking.park.Constant.msg_over_delay;
 import static com.parking.park.Constant.showTestMsg;
 
 public class MainActivity extends BaseActivity {
@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
         bt_change_test = (CheckBox) findViewById(R.id.bt_change_test);
         bt_set_msg_delay_time = (Button) findViewById(R.id.bt_set_msg_delay_time);
         et_delay_time = (EditText) findViewById(R.id.et_delay_time);
-        et_delay_time.setText(msg_show_delay / 1000 + "");
+        et_delay_time.setText(msg_over_delay / 1000 + "");
 
         bt_change_test.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity {
             public void onClick(View view) {
                 String s = et_delay_time.getText().toString();
                 try {
-                    msg_show_delay = Integer.parseInt(s) * 1000;
+                    msg_over_delay = Integer.parseInt(s) * 1000;
                     ToastUtils.showShort("设置成功");
                 } catch (Exception e) {
                     ToastUtils.showShort("请输入正确的整数");

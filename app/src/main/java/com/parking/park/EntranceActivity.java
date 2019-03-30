@@ -5,6 +5,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.parking.park.bean.EntranceBean;
+import com.parking.park.bean.OverBean;
 import com.parking.park.utils.SpanStringUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -14,7 +15,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.parking.park.Constant.msg_show_delay;
+import static com.parking.park.Constant.msg_over_delay;
 
 public class EntranceActivity extends BaseActivity {
 
@@ -42,19 +43,26 @@ public class EntranceActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(EntranceBean messageEvent) {
+        over = false;
         mTvCarType.setText(messageEvent.getClxz());
         mTvRemainder.setText(SpanStringUtils.getCarRemainder(messageEvent.getYw()));
         carCode.setText(SpanStringUtils.getCarCode(messageEvent.getCp()));
         mTvTips.setText(messageEvent.getFjxx1());
         if (fl_container.indexOfChild(mLayout) >= 0) {
             fl_container.removeView(mLayout);
-            fl_container.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    fl_container.addView(mLayout);
-                }
-            }, msg_show_delay);
         }
+    }
+    protected boolean over = true;
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void Event(OverBean messageEvent) {
+        over = true;
+        fl_container.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (fl_container.indexOfChild(mLayout) < 0 && over)
+                    fl_container.addView(mLayout);
+            }
+        }, msg_over_delay);
     }
 
 }

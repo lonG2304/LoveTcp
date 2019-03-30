@@ -7,6 +7,7 @@ import android.support.multidex.MultiDexApplication;
 import com.blankj.utilcode.util.Utils;
 import com.parking.park.bean.EntranceBean;
 import com.parking.park.bean.ExitBean;
+import com.parking.park.bean.OverBean;
 import com.parking.park.tcp.EmSend;
 import com.parking.park.tcp.ParkingHelper;
 import com.parking.park.tcp.ParkingInfoListener;
@@ -58,6 +59,7 @@ public class BaseApplication extends MultiDexApplication {
                         ParkingHelper.getInstance().sendMsg(true, EmSend.EXIT);
                         break;
                     case OVER:
+                        EventBus.getDefault().post(new OverBean());
                         ParkingHelper.getInstance().sendMsg(true, EmSend.OVER);
                         break;
 

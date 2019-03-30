@@ -9,7 +9,7 @@ public class Constant {
     public static int PORT = 9999;
 
     public static final long AD_LOOP_INTERVAL = 3000l;
-    public static long msg_show_delay = 60 * 1000l;
+    public static long msg_over_delay = 3 * 1000l;
     public static boolean showTestMsg = false;
 //    public static final boolean showTestMsg = BuildConfig.DEBUG;
 
