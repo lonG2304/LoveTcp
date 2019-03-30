@@ -1,14 +1,19 @@
 package com.parking.park;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.parking.park.bean.ExitBean;
 import com.parking.park.utils.ImageLoader;
 import com.parking.park.utils.SpanStringUtils;
+
+
+import net.glxn.qrgen.android.QRCode;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -17,7 +22,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.parking.park.Constant.AD_SHOW_DELAY;
+import static com.parking.park.Constant.msg_show_delay;
 
 public class ExitActivity extends BaseActivity {
 
@@ -54,16 +59,18 @@ public class ExitActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(ExitBean messageEvent) {
 
-        mTvCarType.setText(SpanStringUtils.getCarCode(messageEvent.getCp(),messageEvent.getClxz()));
+        mTvCarType.setText(SpanStringUtils.getCarCode(messageEvent.getCp(), messageEvent.getClxz()));
         mTvTime.setText(SpanStringUtils.getTime(messageEvent.getSc()));
         mTvCost.setText(SpanStringUtils.getMoney(messageEvent.getJe()));
         mTvTips.setText(messageEvent.getFjxx1());
         try {
-            ImageLoader.load(messageEvent.getFkewm(), mIvCode);
+            Bitmap myBitmap = QRCode.from(messageEvent.getFkewm()).bitmap();
+            mIvCode.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            mIvCode.setImageBitmap(myBitmap);
         } catch (Exception e) {
             e.printStackTrace();
+            ToastUtils.showShort("获取付款码失败");
         }
-
         if (fl_container.indexOfChild(mLayout) >= 0) {
             fl_container.removeView(mLayout);
             fl_container.postDelayed(new Runnable() {
@@ -71,7 +78,7 @@ public class ExitActivity extends BaseActivity {
                 public void run() {
                     fl_container.addView(mLayout);
                 }
-            }, AD_SHOW_DELAY);
+            }, msg_show_delay);
         }
 
     }

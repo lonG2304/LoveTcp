@@ -5,11 +5,11 @@ import android.widget.Toast;
 import com.blankj.utilcode.util.Utils;
 
 import static com.parking.park.BaseApplication.mainHandler;
-import static com.parking.park.Constant.IS_DEBUG;
+import static com.parking.park.Constant.showTestMsg;
 
 public class MyToast {
     public static void showTestToast(final String msg) {
-        if (IS_DEBUG) {
+        if (showTestMsg) {
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {

@@ -36,21 +36,28 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="30dp"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:orientation="horizontal">
 
-        <Button
+        <CheckBox
             android:id="@+id/bt_change_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="切换测试"/>
+            android:checked="false"
+            android:text="显示测试信息"/>
+
+        <EditText
+            android:id="@+id/et_delay_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:inputType="number"/>
 
         <Button
             android:id="@+id/bt_set_msg_delay_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
-            android:text="信息显示时间"/>
+            android:text="设置信息时长(单位s)"/>
 
 
     </LinearLayout>
