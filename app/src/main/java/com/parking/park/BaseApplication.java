@@ -1,5 +1,7 @@
 package com.parking.park;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.support.multidex.MultiDexApplication;
 
 import com.blankj.utilcode.util.Utils;
@@ -18,6 +20,7 @@ import io.netty.channel.ChannelHandlerContext;
 public class BaseApplication extends MultiDexApplication {
 
     public static BaseApplication context = null;
+    public static Handler mainHandler = new Handler(Looper.getMainLooper());
 
     @Override
     public void onCreate() {
