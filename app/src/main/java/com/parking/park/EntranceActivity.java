@@ -41,29 +41,26 @@ public class EntranceActivity extends BaseActivity {
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void Event(EntranceBean messageEvent) {
+    public void Event(final EntranceBean messageEvent) {
+        fl_container.setTag(messageEvent);
         mTvCarType.setText(messageEvent.getClxz());
         mTvRemainder.setText(SpanStringUtils.getCarRemainder(messageEvent.getYw()));
         carCode.setText(SpanStringUtils.getCarCode(messageEvent.getCp()));
         mTvTips.setText(messageEvent.getFjxx1());
         if (fl_container.indexOfChild(mLayout) >= 0) {
             fl_container.removeView(mLayout);
+            fl_container.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Object tag = fl_container.getTag();
+                    if (fl_container.indexOfChild(mLayout) < 0 &&
+                            messageEvent == tag)
+                        fl_container.addView(mLayout);
+                }
+            }, msg_over_delay * 1000);
+
         }
     }
 
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void Event(final OverBean messageEvent) {
-        fl_container.setTag(messageEvent);
-        fl_container.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Object tag = fl_container.getTag();
-                if (fl_container.indexOfChild(mLayout) < 0 &&
-                        messageEvent == tag)
-                    fl_container.addView(mLayout);
-            }
-        }, msg_over_delay);
-    }
 
 }

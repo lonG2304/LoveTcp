@@ -54,8 +54,8 @@
                 android:gravity="center"
                 android:padding="@dimen/view_margin_tiny"
                 android:text="临时车辆："
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="@dimen/text_size_small"/>
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/main_text_size"/>
 
 
             <TextView
@@ -65,8 +65,8 @@
                 android:gravity="center"
                 android:padding="@dimen/view_margin_tiny"
                 android:text="收费金额："
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="@dimen/text_size_small"/>
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/main_text_size"/>
 
             <TextView
                 android:id="@+id/tv_in_time"
@@ -75,8 +75,8 @@
                 android:gravity="center"
                 android:padding="@dimen/view_margin_tiny"
                 android:text="入场："
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="@dimen/text_size_tiny"/>
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/main_text_size"/>
 
 
             <TextView
@@ -86,8 +86,8 @@
                 android:gravity="center"
                 android:padding="@dimen/view_margin_tiny"
                 android:text="停留："
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="@dimen/text_size_tiny"/>
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/main_text_size"/>
 
 
         </LinearLayout>

@@ -35,8 +35,11 @@ public class BaseActivity extends AppCompatActivity {
         //隐藏标题栏
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        ActivityCompat.requestPermissions(this, new String[]{android
-                .Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        ActivityCompat.requestPermissions(this,
+                new String[]{
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        android.Manifest.permission.RECEIVE_BOOT_COMPLETED
+                }, 1);
         initAddLayout();
     }
 

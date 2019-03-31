@@ -86,7 +86,7 @@ public class ExitActivity extends BaseActivity {
                         messageEvent == tag)
                     fl_container.addView(mLayout);
             }
-        }, msg_over_delay);
+        }, msg_over_delay * 1000);
     }
 
 }
