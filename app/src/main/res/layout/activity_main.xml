@@ -31,6 +31,14 @@
         android:padding="30dp"
         android:text="exit!"/>
 
+    <Button
+        android:text="关闭应用"
+        android:id="@+id/bt_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="130dp"/>
+
     <RadioGroup
         android:id="@+id/rg_select_type"
         android:layout_width="wrap_content"
@@ -80,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
-            android:text="抬杆后延时(单位s)"/>
+            android:text="信息显示延时(单位s)"/>
 
 
     </LinearLayout>

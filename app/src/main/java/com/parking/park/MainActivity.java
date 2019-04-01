@@ -43,6 +43,8 @@ public class MainActivity extends BaseActivity {
     EditText mEtDelayTime;
     @BindView(R.id.bt_set_msg_delay_time)
     Button mBtSetMsgDelayTime;
+    @BindView(R.id.bt_close)
+    Button bt_close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,14 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+
+        bt_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+        });
+
         mTvEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,4 +122,9 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
 }

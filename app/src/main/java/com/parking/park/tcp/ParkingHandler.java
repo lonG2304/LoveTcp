@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.parking.park.BaseApplication;
 import com.parking.park.bean.EntranceBean;
+import com.parking.park.utils.MyToast;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -22,6 +23,7 @@ class ParkingHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);
+        MyToast.showTestToast("channelActive");
         ParkingHelper.channelCtx = ctx;
         if (listener != null) {
             listener.onChannelActive(ctx);
@@ -34,6 +36,9 @@ class ParkingHandler extends SimpleChannelInboundHandler<String> {
 
         if (listener != null) {
             if (!TextUtils.isEmpty(rcvMsg)) {
+
+                MyToast.showTestToast("收到数据：" + rcvMsg);
+
                 Log.v("gl", "rcvMsg==" + rcvMsg);
                 Gson gson = new Gson();
                 RspModel model = gson.fromJson(rcvMsg, RspModel.class);
@@ -45,11 +50,13 @@ class ParkingHandler extends SimpleChannelInboundHandler<String> {
                         EmSend emCommand = EmSend.getCmd(name);
                         listener.onReceiveInfo(ctx, emCommand, gson.toJson(model.getData()));
                     } else
+                        MyToast.showTestToast("非法指令");
                         Log.v("gl", "非法指令");
                 } else {
+                    MyToast.showTestToast("指令格式错误");
                     Log.v("gl", "指令格式错误");
                 }
-            }
+            } else MyToast.showTestToast("收到数据，但数据为null");
         }
     }
 
@@ -57,6 +64,7 @@ class ParkingHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         super.channelInactive(ctx);
+        MyToast.showTestToast("channelInactive");
         ParkingHelper.channelCtx = null;
         if (listener != null) {
             listener.onChannelInactive(ctx);

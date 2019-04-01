@@ -37,28 +37,35 @@ public class EntranceActivity extends BaseActivity {
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         fl_container.addView(mLayout);
+        if (Constant.showTestMsg)
+            fl_container.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    EventBus.getDefault().post(new EntranceBean());
+                }
+            }, 4000);
     }
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(final EntranceBean messageEvent) {
-        fl_container.setTag(messageEvent);
         mTvCarType.setText(messageEvent.getClxz());
         mTvRemainder.setText(SpanStringUtils.getCarRemainder(messageEvent.getYw()));
         carCode.setText(SpanStringUtils.getCarCode(messageEvent.getCp()));
         mTvTips.setText(messageEvent.getFjxx1());
+        fl_container.setTag(messageEvent);
+        fl_container.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Object tag = fl_container.getTag();
+                if (fl_container.indexOfChild(mLayout) < 0 &&
+                        messageEvent == tag)
+                    fl_container.addView(mLayout);
+            }
+        }, msg_over_delay * 1000);
+
         if (fl_container.indexOfChild(mLayout) >= 0) {
             fl_container.removeView(mLayout);
-            fl_container.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Object tag = fl_container.getTag();
-                    if (fl_container.indexOfChild(mLayout) < 0 &&
-                            messageEvent == tag)
-                        fl_container.addView(mLayout);
-                }
-            }, msg_over_delay * 1000);
-
         }
     }
 

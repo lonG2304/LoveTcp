@@ -1,5 +1,9 @@
 package com.parking.park;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
@@ -7,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.blankj.utilcode.util.FileUtils;
@@ -41,6 +46,8 @@ public class BaseActivity extends AppCompatActivity {
                         android.Manifest.permission.RECEIVE_BOOT_COMPLETED
                 }, 1);
         initAddLayout();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
     }
 
 
@@ -71,4 +78,6 @@ public class BaseActivity extends AppCompatActivity {
             mLayout.stop();
         super.onDestroy();
     }
+
+
 }

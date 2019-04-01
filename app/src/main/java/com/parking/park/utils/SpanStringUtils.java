@@ -14,7 +14,7 @@ public class SpanStringUtils {
     public static CharSequence getCarCode(String cp) {
         AndroidSpan span = new AndroidSpan();
         span.drawWithOptions("车牌: ", new SpanOptions())
-                .drawWithOptions(cp, new SpanOptions().addRelativeSize(1.1f).addStyleSpan(android.graphics.Typeface.BOLD));
+                .drawWithOptions(cp+"", new SpanOptions().addRelativeSize(1.1f).addStyleSpan(android.graphics.Typeface.BOLD));
         return span.getSpanText();
     }
 
