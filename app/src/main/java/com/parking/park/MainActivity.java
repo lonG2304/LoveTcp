@@ -78,7 +78,12 @@ public class MainActivity extends BaseActivity {
         bt_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                android.os.Process.killProcess(android.os.Process.myPid());
+                Intent intentw = new Intent(Intent.ACTION_MAIN);
+                intentw.addCategory(Intent.CATEGORY_HOME);
+                intentw.setClassName("android",
+                        "com.android.internal.app.ResolverActivity");
+                startActivity(intentw);
+
             }
         });
 

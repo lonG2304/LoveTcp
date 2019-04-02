@@ -32,7 +32,7 @@
         android:text="exit!"/>
 
     <Button
-        android:text="关闭应用"
+        android:text="选择桌面"
         android:id="@+id/bt_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
