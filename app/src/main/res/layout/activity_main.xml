@@ -1,18 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/tv_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="enter!"/>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:padding="30dp"
+        android:text="enter!"/>
+
+    <TextView
+        android:id="@+id/tv_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:padding="30dp"
+        android:text="exit!"/>
+
+    <Button
+        android:text="选择桌面"
+        android:id="@+id/bt_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="130dp"/>
+
+    <RadioGroup
+        android:id="@+id/rg_select_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="90dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="出场屏"/>
+
+        <RadioButton
+            android:id="@+id/radio_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="入场屏"/>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/bt_change_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="显示测试信息"/>
+
+        <EditText
+            android:id="@+id/et_delay_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:inputType="number"/>
+
+        <Button
+            android:id="@+id/bt_set_msg_delay_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="信息显示延时(单位s)"/>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

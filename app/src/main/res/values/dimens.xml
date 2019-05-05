@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_text_size">35sp</dimen>
+    <dimen name="text_size_small">30sp</dimen>
+    <dimen name="text_size_tiny">25sp</dimen>
+    <dimen name="welcome_text_size">50sp</dimen>
+    <dimen name="activity_margin">16dp</dimen>
+    <dimen name="view_margin">30dp</dimen>
+    <dimen name="view_margin_small">20dp</dimen>
+    <dimen name="view_margin_tiny">5dp</dimen>
+    <dimen name="bg_view_height">140dp</dimen>
+    <dimen name="code_size">150dp</dimen>
+    <dimen name="tips_bottom">60dp</dimen>
+    <dimen name="bg_radius">10dp</dimen>
+</resources>
